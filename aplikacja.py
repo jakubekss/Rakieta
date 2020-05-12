@@ -5,6 +5,7 @@ class Aplikacja(QWidget):
     def __init__(self):
         super(Aplikacja, self).__init__()
         self.interfejs()
+        self.obliczenia()
 
     def interfejs(self):
 
@@ -48,6 +49,7 @@ class Aplikacja(QWidget):
 
         # przyciski
         obliczBtn = QPushButton("&Oblicz", self)
+        obliczBtn.clicked.connect(self.obliczenia)
         obliczBtn.resize(obliczBtn.sizeHint())
 
         zamknijBtn = QPushButton("&Zamknij", self)
@@ -63,6 +65,17 @@ class Aplikacja(QWidget):
         self.resize(300, 150)
         self.setWindowTitle("Rakieta")
         self.show()
+    
+    def obliczenia(self):
+
+        M = float(self.masa.text())
+        d = float(self.srednica.text())
+        Cd = float(self.opor.text())
+        I = float(self.impuls.text())
+        T = float(self.ciag.text())
+        wynik = ""
+
+        self.wynik.setText(str(wynik))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
