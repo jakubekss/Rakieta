@@ -1,12 +1,5 @@
 import math
 
-M = 10
-Cd = 0.75
-d = 0.2
-T = 1200
-I = 1800
-
-
 def wspolczynnik_k():
     # rho - gęstość powietrza w kg/m^3
     rho = 1.2
@@ -48,15 +41,3 @@ def wysokosc_c():
     hc = (M/(2*k)) * math.log10((M*g + k*v**2)/(M*g))
 
     return hc
-
-
-
-
-k = wspolczynnik_k()
-q = wspolczynnik_q()
-x = wspolczynnik_x()
-v = predkosc_max()
-hb = wysokosc_b()
-hc = wysokosc_c()
-
-print(hb + hc)
