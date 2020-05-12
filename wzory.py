@@ -1,6 +1,13 @@
 import math
 
-def wspolczynnik_k(Cd, d):
+M = 10
+Cd = 0.75
+d = 0.2
+T = 1200
+I = 1800
+
+
+def wspolczynnik_k():
     # rho - gęstość powietrza w kg/m^3
     rho = 1.2
     # A - pole powierzchni rakiety w m^2
@@ -9,14 +16,47 @@ def wspolczynnik_k(Cd, d):
     
     return k
 
-def wspolczynnik_q(T, M):
+def wspolczynnik_q():
     # g - przyśpieszenie grawitacyjne m/s^2
     g = 9.81
     q = math.sqrt((T - M*g)/k)
     
     return q
 
-def wspolczynnik_x(M):
+def wspolczynnik_x():
     x = (2 * k * q) / M
     
     return x
+
+def predkosc_max():
+    # t - czas pracy silnika
+    t = I/T
+    v = q * (1-math.exp(-x*t))/(1+math.exp(-x*t))
+
+    return v
+
+def wysokosc_b():
+    # g - przyśpieszenie grawitacyjne m/s^2
+    g = 9.81
+    hb = (-M/(2*k)) * math.log10((T - M*g - k*v**2)/(T - M*g))
+
+    return hb
+
+def wysokosc_c():
+    # g - przyśpieszenie grawitacyjne m/s^2
+    g = 9.81
+    hc = (M/(2*k)) * math.log10((M*g + k*v**2)/(M*g))
+
+    return hc
+
+
+
+
+k = wspolczynnik_k()
+q = wspolczynnik_q()
+x = wspolczynnik_x()
+v = predkosc_max()
+hb = wysokosc_b()
+hc = wysokosc_c()
+
+print(hb + hc)
