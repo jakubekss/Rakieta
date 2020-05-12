@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout
 import sys
 
 class Aplikacja(QWidget):
@@ -8,7 +8,21 @@ class Aplikacja(QWidget):
 
     def interfejs(self):
 
-        self.resize(300, 300)
+        # etykiety
+        etykieta1 = QLabel("Masa rakiety w kg", self)
+        etykieta2 = QLabel("Średnica rakiety w m", self)
+        etykieta3 = QLabel("Współczynnik oporu rakiety", self)
+
+        # przypisanie widgetów do układu tabelarycznego
+        ukladT = QGridLayout()
+        ukladT.addWidget(etykieta1, 0, 0)
+        ukladT.addWidget(etykieta2, 1, 0)
+        ukladT.addWidget(etykieta3, 2, 0)
+
+        # przypisanie utworzonego układu do okna
+        self.setLayout(ukladT)
+
+        self.resize(300, 100)
         self.setWindowTitle("Rakieta")
         self.show()
 
