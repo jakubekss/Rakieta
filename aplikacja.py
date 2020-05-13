@@ -78,7 +78,7 @@ class Aplikacja(QWidget):
             Cd = float(self.opor.text())
             I = float(self.impuls.text())
             T = float(self.ciag.text())
-            wynik = ""
+            wynik = 0
 
             if nadawca.text() == "&Oblicz":        
 
@@ -86,14 +86,14 @@ class Aplikacja(QWidget):
                 q = wzory.wspolczynnik_q(T, M, k)
                 x = wzory.wspolczynnik_x(k, q, M)
                 v = wzory.predkosc_max(I, T, q, x)
-                hb = float(wzory.wysokosc_b(k, M, T, v))
-                hc = float(wzory.wysokosc_c(k, M, v))
+                hb = wzory.wysokosc_b(k, M, T, v)
+                hc = wzory.wysokosc_c(k, M, v)
 
                 wynik = hb + hc
             else:
                 pass
 
-            self.wynik.setText(str(wynik))
+            self.wynik.setText(f'{wynik:.3f}')
 
         except ValueError:
             QMessageBox.warning(self, "Błąd", "Błędne dane", QMessageBox.Ok)
