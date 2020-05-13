@@ -10,12 +10,12 @@ class Aplikacja(QWidget):
     def interfejs(self):
 
         # etykiety
-        etykieta1 = QLabel("Masa rakiety w kg", self)
-        etykieta2 = QLabel("Średnica rakiety w m", self)
+        etykieta1 = QLabel("Masa rakiety w [kg]", self)
+        etykieta2 = QLabel("Średnica rakiety w [m]", self)
         etykieta3 = QLabel("Współczynnik oporu aerodynamicznego", self)
-        etykieta4 = QLabel("Impuls silnika w Ns", self)
-        etykieta5 = QLabel("Ciąg rakiety w N", self)
-        etykieta6 = QLabel("Pułap na który wzniesie się rakieta w m", self)
+        etykieta4 = QLabel("Impuls silnika w [Ns]", self)
+        etykieta5 = QLabel("Ciąg rakiety w [N]", self)
+        etykieta6 = QLabel("Pułap na który wzniesie się rakieta w [m]", self)
 
         # przypisanie widgetów do układu tabeli
         ukladT = QGridLayout()
@@ -74,6 +74,15 @@ class Aplikacja(QWidget):
         I = float(self.impuls.text())
         T = float(self.ciag.text())
         wynik = ""
+
+        k = wspolczynnik_k()
+        q = wspolczynnik_q()
+        x = wspolczynnik_x()
+        v = predkosc_maksymalna()
+        hb = wysokosc_hb()
+        hc = wysokosc_hc()
+
+        wynik = hb + hc
 
         self.wynik.setText(str(wynik))
 
