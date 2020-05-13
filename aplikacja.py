@@ -8,7 +8,7 @@ class Aplikacja(QWidget):
         super(Aplikacja, self).__init__()
         
         self.interfejs()
-        self.obliczenia()
+        
 
     def interfejs(self):
 
@@ -64,7 +64,6 @@ class Aplikacja(QWidget):
         # przypisanie utworzonego układu do okna
         self.setLayout(ukladT)
     
-
         self.resize(300, 150)
         self.setWindowTitle("Rakieta")
         self.show()
