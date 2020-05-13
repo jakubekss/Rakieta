@@ -86,8 +86,8 @@ class Aplikacja(QWidget):
                 q = wzory.wspolczynnik_q(T, M, k)
                 x = wzory.wspolczynnik_x(k, q, M)
                 v = wzory.predkosc_max(I, T, q, x)
-                hb = wzory.wysokosc_b(k, M, T, v)
-                hc = wzory.wysokosc_c(k, M, v)
+                hb = float(wzory.wysokosc_b(k, M, T, v))
+                hc = float(wzory.wysokosc_c(k, M, v))
 
                 wynik = hb + hc
             else:
