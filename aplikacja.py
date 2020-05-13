@@ -78,9 +78,9 @@ class Aplikacja(QWidget):
         k = wspolczynnik_k()
         q = wspolczynnik_q()
         x = wspolczynnik_x()
-        v = predkosc_maksymalna()
-        hb = wysokosc_hb()
-        hc = wysokosc_hc()
+        v = predkosc_max()
+        hb = wysokosc_b()
+        hc = wysokosc_c()
 
         wynik = hb + hc
 
