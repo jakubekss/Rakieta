@@ -1,9 +1,12 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QLineEdit, QPushButton, QMessageBox
 import sys
+import math
+import wzory
 
 class Aplikacja(QWidget):
     def __init__(self):
         super(Aplikacja, self).__init__()
+        
         self.interfejs()
         self.obliczenia()
 
@@ -68,23 +71,33 @@ class Aplikacja(QWidget):
     
     def obliczenia(self):
 
-        M = float(self.masa.text())
-        d = float(self.srednica.text())
-        Cd = float(self.opor.text())
-        I = float(self.impuls.text())
-        T = float(self.ciag.text())
-        wynik = ""
+        nadawca = self.sender()
 
-        k = wspolczynnik_k()
-        q = wspolczynnik_q()
-        x = wspolczynnik_x()
-        v = predkosc_max()
-        hb = wysokosc_b()
-        hc = wysokosc_c()
+        try:
+            M = float(self.masa.text())
+            d = float(self.srednica.text())
+            Cd = float(self.opor.text())
+            I = float(self.impuls.text())
+            T = float(self.ciag.text())
+            wynik = ""
 
-        wynik = hb + hc
+            if nadawca.text() == "&Oblicz":        
 
-        self.wynik.setText(str(wynik))
+                k = wzory.wspolczynnik_k(Cd, d)
+                q = wzory.wspolczynnik_q(T, M, k)
+                x = wzory.wspolczynnik_x(k, q, M)
+                v = wzory.predkosc_max(I, T, q, x)
+                hb = wzory.wysokosc_b(k, M, T, v)
+                hc = wzory.wysokosc_c(k, M, v)
+
+                wynik = hb + hc
+            else:
+                pass
+
+            self.wynik.setText(str(wynik))
+
+        except ValueError:
+            QMessageBox.warning(self, "Błąd", "Błędne dane", QMessageBox.Ok)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
